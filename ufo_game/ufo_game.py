@@ -500,7 +500,7 @@ class CowAbductionGame(arcade.Window):
         self.game_width = self.background_width
         self.game_height = SCREEN_HEIGHT
 
-        self.craft = Craft("craft2b.png", CRAFT_SCALING, self.game_width, self)
+        self.craft = Craft("assets/craft2b.png", CRAFT_SCALING, self.game_width, self)
         self.cows_list = arcade.SpriteList()
         self.explosions_list = arcade.SpriteList()
 
@@ -572,7 +572,7 @@ class CowAbductionGame(arcade.Window):
 
             # set game images (craft, animals, background)
             self.craft = Craft("assets/craft2b.png", CRAFT_SCALING, self.game_width, self)
-            self.generate_animal("assets/cow2.png", COW_SCALING, 30)
+            self.generate_animal("assets/cow.png", COW_SCALING, 30)
             
             
             self.newspaper_images = [
@@ -715,7 +715,10 @@ class CowAbductionGame(arcade.Window):
 
         # Dynamic text size based on viewport height
         text_size = int(height * 0.1)  # 10% of viewport height
-        text = "LIFT to START"
+        if USE_DIGITAL_WEIGHT_CONTROLLER:
+            text = "LIFT to START"
+        else:
+            text = "PRESS SPACE to START"
         text_x = width / 2 + left
         text_y = height / 2.5 + bottom
         text_osman = "RACCOON MODE!"
@@ -1046,7 +1049,7 @@ class CowAbductionGame(arcade.Window):
 
 
 def main():
-    game = CowAbductionGame(monitor_index=1)  # Set the desired monitor index here
+    game = CowAbductionGame(monitor_index=2)  # Set the desired monitor index here
     arcade.run()
 
 if __name__ == "__main__":
